@@ -17,7 +17,7 @@ run
 
 Above will create the jar file inside the target folder
 
-3> open command prompt or terminal and run
+3. Open command prompt or terminal depending on the Operating system on which one is running and run following command to run the application
 
 java -jar <jar Name> <portNumber>
  
