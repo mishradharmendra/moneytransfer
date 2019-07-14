@@ -19,7 +19,7 @@ Above will create the jar file inside the target folder
 
 3. Open command prompt or terminal depending on the Operating system on which one is running and run following command to run the application
 
-java -jar <jar Name> <portNumber>
+java -jar JarFileName portNumber
  
 e.g.
 
