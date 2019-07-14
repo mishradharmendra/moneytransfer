@@ -29,6 +29,6 @@ public class WebEntrypoint implements AppEntrypoint {
     @Override
     public void boot(String[] args) {
         bindRoutes();
-        app.start(7000);
+        app.start(Integer.parseInt(args[0]));
     }
 }

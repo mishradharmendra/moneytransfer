@@ -20,7 +20,8 @@ public abstract  class Routing<T> {
         return injector.getInstance(getControllerFromGenericType());
     }
 
-    private Class<T> getControllerFromGenericType() {
+    @SuppressWarnings("unchecked")
+	private Class<T> getControllerFromGenericType() {
         if (controller == null) {
             controller = (Class<T>) ((ParameterizedType) getClass()
                     .getGenericSuperclass()).getActualTypeArguments()[0];

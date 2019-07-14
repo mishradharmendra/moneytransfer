@@ -1,14 +1,14 @@
 package com.moneytransfer.account.repositories;
 
-import com.moneytransfer.account.exception.InsufficientAmountException;
-import com.moneytransfer.account.exception.InvalidTransferException;
-import com.moneytransfer.dto.AccountRequest;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
-import java.math.BigDecimal;
+import com.moneytransfer.account.exception.InsufficientAmountException;
+import com.moneytransfer.account.exception.InvalidTransferException;
+import com.moneytransfer.dto.AccountRequest;
 
 public class AccountRepositoriesImplTest {
 
@@ -56,11 +56,11 @@ public class AccountRepositoriesImplTest {
         Assert.assertTrue(accountRepositories.getAllAccounts().size() == 1);
 
         accountRepositories.addBalance(1, new BigDecimal("1000"));
-        Assert.assertTrue(accountRepositories.getAllAccounts().get(0).getBalance().compareTo(new BigDecimal("2000")) <=1);
+        Assert.assertTrue(accountRepositories.getAllAccounts().get(0).getBalance().compareTo(new BigDecimal("2000")) == 0);
     }
 
     @Test
-    public void withdrowAmount() {
+    public void withdrowAmount() throws InsufficientAmountException {
         AccountRequest request = new AccountRequest();
         request.setAmount(new BigDecimal("1000"));
         request.setName("Demo");
@@ -68,7 +68,7 @@ public class AccountRepositoriesImplTest {
         Assert.assertTrue(accountRepositories.getAllAccounts().size() == 1);
 
         accountRepositories.withdrowAmount(1, new BigDecimal("500"));
-        Assert.assertTrue(accountRepositories.getAllAccounts().get(0).getBalance().compareTo(new BigDecimal("500")) <=1);
+        Assert.assertTrue(accountRepositories.getAllAccounts().get(0).getBalance().compareTo(new BigDecimal("500")) ==0);
     }
 
     @Test
@@ -89,11 +89,11 @@ public class AccountRepositoriesImplTest {
             accountRepositories.transferAmount(1, 2 , new BigDecimal("500"));
             BigDecimal account1Bal = accountRepositories.getAllAccounts().stream().filter( aa -> aa.getId() == 1)
                     .map(a -> a.getBalance()).findFirst().get();
-            Assert.assertTrue(account1Bal.compareTo(new BigDecimal("500")) <=1);
+            Assert.assertTrue(account1Bal.compareTo(new BigDecimal("500")) ==0);
 
             BigDecimal account2Bal = accountRepositories.getAllAccounts().stream().filter( aa -> aa.getId() == 2)
                     .map(a -> a.getBalance()).findFirst().get();
-            Assert.assertTrue(account1Bal.compareTo(new BigDecimal("1500")) <=1);
+            Assert.assertTrue(account2Bal.compareTo(new BigDecimal("1500")) == 0);
 
 
         } catch (InsufficientAmountException e) {

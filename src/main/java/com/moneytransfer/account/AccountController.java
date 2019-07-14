@@ -35,10 +35,15 @@ public class AccountController  {
     public void createAccount(Context context) {
         LOGGER.info("Creating account");
         var accountReq = context.bodyAsClass(AccountRequest.class);
-        var account = accountService.createAccount(accountReq);
-        context.json(account);
-        LOGGER.info("Account created successfully ", account);
-        context.status(HttpStatus.CREATED_201);
+        if(accountReq.getAmount().doubleValue() >= 0d) {
+        	var account = accountService.createAccount(accountReq);
+            context.json(account);
+            LOGGER.info("Account created successfully ", account);
+            context.status(HttpStatus.CREATED_201);
+        } else {
+        	context.status(HttpStatus.UNPROCESSABLE_ENTITY_422);
+        }
+        
     }
 
     public void deleteAccount(Context context, String id) {
@@ -56,6 +61,7 @@ public class AccountController  {
         var transReq = context.bodyAsClass(AccountTransferRequest.class);
         LOGGER.info("Transferring amount " + transReq.getAmount() + " from " + transReq.getAccountFrom() + " to " + transReq.getAccountTo());
         context.json(accountService.transferAmount(transReq.getAccountFrom(), transReq.getAccountTo(), transReq.getAmount()));
+        context.status(HttpStatus.OK_200);
     }
 
     public void getAllAccountTransaction(Context context, String id) {
@@ -67,7 +73,7 @@ public class AccountController  {
         accountService.addBalance(account.getId(), account.getAmount());
         context.json(accountService.getAllAccounts().stream().filter( aa -> aa.getId()==account.getId()).collect(Collectors.toList()));
     }
-    public void withDrawBalance(Context context) {
+    public void withDrawBalance(Context context) throws InsufficientAmountException {
         var account = context.bodyAsClass(AccountRequest.class);
         LOGGER.info("Withdrawing amount ", account.getAmount() + " to account id ", account.getId());
         accountService.withdrowAmount(account.getId(), account.getAmount());

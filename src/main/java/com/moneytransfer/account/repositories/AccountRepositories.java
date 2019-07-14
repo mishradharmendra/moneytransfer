@@ -15,7 +15,7 @@ public interface AccountRepositories {
     AccountDto createAccount(AccountRequest accountRequest);
     Account deleteAccount(int accountId);
     AccountDto addBalance(int accountId, BigDecimal amount);
-    AccountDto withdrowAmount(int accountId, BigDecimal amount);
+    AccountDto withdrowAmount(int accountId, BigDecimal amount) throws InsufficientAmountException;
     List<AccountTransaction> getAccountTransaction(int accountId);
     List<AccountDto> transferAmount(int fromAccount, int toAccount, BigDecimal amount) throws InsufficientAmountException, InvalidTransferException;
 }

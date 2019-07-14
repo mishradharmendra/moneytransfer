@@ -92,13 +92,16 @@ public class AccountRepositoriesImpl implements AccountRepositories {
     }
 
     @Override
-    public AccountDto withdrowAmount(int accountId, BigDecimal amount) {
+    public AccountDto withdrowAmount(int accountId, BigDecimal amount) throws InsufficientAmountException {
         try {
             LOGGER.info("Withdrawing amount from account "+ accountId + " of amount " + amount);
             lock.lock();
             Account account = accounts.get(accountId);
             if (account == null)
                 return null;
+            if(account.balance.get().doubleValue() < amount.doubleValue()) {
+            	throw new InsufficientAmountException("Not Enough Balance");
+            }
             account.balance.updateAndGet(current -> current.subtract(amount));
             addTransaction(accountId,amount, TransactionType.DEBIT);
             LOGGER.info("Balance after adding the amount " + account);

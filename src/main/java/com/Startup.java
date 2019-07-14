@@ -19,4 +19,5 @@ public class Startup {
         var entryPoint = Optional.ofNullable(entrypoints.get(entrypointType));
         entryPoint.orElseThrow(() -> new RuntimeException("Entrypoint not defined")).boot(args);
     }
+    
 }

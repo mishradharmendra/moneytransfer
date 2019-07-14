@@ -43,7 +43,7 @@ public class AccountServiveImpl implements AccountService {
     }
 
     @Override
-    public AccountDto withdrowAmount(int accountId, BigDecimal amount) {
+    public AccountDto withdrowAmount(int accountId, BigDecimal amount) throws InsufficientAmountException {
         return accountRepositories.withdrowAmount(accountId, amount);
     }
 
