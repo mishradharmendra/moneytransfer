@@ -10,13 +10,19 @@ one can run the application as a stand-alone application,
 
 
 run
-1> mvn clean
-2> mvn install
 
-above will create the jar file inside the target folder
+1. mvn clean
+
+2. mvn install
+
+Above will create the jar file inside the target folder
+
 3> open command prompt or terminal and run
+
 java -jar <jar Name> <portNumber>
+ 
 e.g.
+
 java -jar money-transfer-1.0-SNAPSHOT.jar 7000
 
 NOTE:<Jar Name can be different if one has change name of application>
