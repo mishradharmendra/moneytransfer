@@ -34,23 +34,30 @@ Following are the endpoint URLs on which are exposed in the API
 get("/api/moneybank/accounts"); --- to get all the accounts in the system
 
 post("/api/moneybank/accounts"); --add the account to the system, Following is json request is expected
+
 "{\n" +
  "\"name\" : \"d harmendra\",\n" +
  "\"amount\" : 1200\n" +
  "}"
  
+
 delete("/api/moneybank/accounts/:account-id"); -- to delete account from the system
+
 
 get("/api/moneybank/accounts/balance/:account-id"); -- give account balance for an account
 
+
 get("/api/moneybank/accounts/transaction/:account-id"); --give all transaction happend to the account
 
+
 post("/api/moneybank/accounts/addBalance"); --add Balance to the account, Following is json request is expected
+
 "{\n" +
  "\"name\" : \"dharmendra\",\n" +
  "\"amount\" : 1200\n" +
  "}";
  
+
 post("/api/moneybank/accounts/withdraw"); -- withdraw amount from an account,Following is json request is expected
 
 "{\n" +
@@ -58,8 +65,10 @@ post("/api/moneybank/accounts/withdraw"); -- withdraw amount from an account,Fol
  "\"amount\" : 1200\n" +
  "}";
  
+
 post("/api/moneybank/accounts/transfer"); -- Money transfer API, Following is json request is expected
- "{\n" +
+
+"{\n" +
   "\"accountFrom\" : 1,\n" +
   "\"accountTo\" : 2,\n" +
   "\"amount\" : 500\n" +
