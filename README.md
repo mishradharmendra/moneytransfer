@@ -35,10 +35,7 @@ get("/api/moneybank/accounts"); --- to get all the accounts in the system
 
 post("/api/moneybank/accounts"); --add the account to the system, Following is json request is expected
 
-"{\n" +
- "\"name\" : \"d harmendra\",\n" +
- "\"amount\" : 1200\n" +
- "}"
+{"name\" : "dharmendra", "amount" : 1200 }
  
 
 delete("/api/moneybank/accounts/:account-id"); -- to delete account from the system
@@ -52,27 +49,18 @@ get("/api/moneybank/accounts/transaction/:account-id"); --give all transaction h
 
 post("/api/moneybank/accounts/addBalance"); --add Balance to the account, Following is json request is expected
 
-"{\n" +
- "\"name\" : \"dharmendra\",\n" +
- "\"amount\" : 1200\n" +
- "}";
+{"name\" : "dharmendra", "amount" : 1200 }
+
  
 
 post("/api/moneybank/accounts/withdraw"); -- withdraw amount from an account,Following is json request is expected
 
-"{\n" +
- "\"name\" : \"dharmendra\",\n" +
- "\"amount\" : 1200\n" +
- "}";
+{"name\" : "dharmendra", "amount" : 1200 }
  
 
 post("/api/moneybank/accounts/transfer"); -- Money transfer API, Following is json request is expected
 
-"{\n" +
-  "\"accountFrom\" : 1,\n" +
-  "\"accountTo\" : 2,\n" +
-  "\"amount\" : 500\n" +
-  "}";
+{"accountFrom" : 1,"accountTo" : 2,"amount" : 500}
  
  
  There are some feature that needs to be added related to currency, Now system assumes both amount in same currency.
